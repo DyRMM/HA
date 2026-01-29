@@ -1,6 +1,6 @@
 name: Autorenovador de certificados
 slug: renew_cert
-version: "1.7.3"         # ⬅️ sube versión para forzar rebuild
+version: "1.7.4"         # ⬅️ sube versión para forzar rebuild
 description: >
   Ejecuta /config/scripts/renew-cert.sh en base a 'renew_if_days_left' (<= umbral).
   Copia el script a /config/scripts si no existe. Programa cron diario 03:30.
