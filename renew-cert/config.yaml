@@ -1,0 +1,32 @@
+name: Autorenovador de certificados
+slug: renew_cert
+version: "1.7.3"         # ⬅️ sube versión para forzar rebuild
+description: >
+  Ejecuta /config/scripts/renew-cert.sh en base a 'renew_if_days_left' (<= umbral).
+  Copia el script a /config/scripts si no existe. Programa cron diario 03:30.
+  Ejecuta one-shot al iniciar. Reinicia core_nginx_proxy tras renovar (Supervisor API).
+
+startup: services
+boot: auto
+init: false
+
+# ⬇️ Imprescindibles para que el Supervisor inyecte el token
+hassio_api: true
+hassio_role: manager
+
+arch:
+  - aarch64
+  - armv7
+  - amd64
+
+map:
+  - config:rw
+  - ssl:rw
+
+options:
+  renew_if_days_left: 30
+  overwrite_on_start: false
+
+schema:
+  renew_if_days_left: int(0,365)
+  overwrite_on_start: bool
